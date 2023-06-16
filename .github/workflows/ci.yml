@@ -17,6 +17,7 @@ on:
       - 'LICENSE'
       - 'data/static/i18n/*.json'
       - 'frontend/src/assets/i18n/*.json'
+  workflow_dispatch:
 env:
   ANGULAR_CLI_VERSION: 13
 jobs:
