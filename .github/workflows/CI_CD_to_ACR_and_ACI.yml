@@ -47,7 +47,7 @@ jobs:
             registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
             registry-username: ${{ secrets.REGISTRY_USERNAME }}
             registry-password: ${{ secrets.REGISTRY_PASSWORD }}
-            dns-name-label: juiceshop
+            dns-name-label: aci-stefanpelab-juiceshop
             ports: 3000
             ip-address: Public
             name: aci-stefanpelab-juiceshop
