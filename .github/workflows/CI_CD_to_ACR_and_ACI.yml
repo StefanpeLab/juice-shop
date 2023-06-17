@@ -28,10 +28,12 @@ jobs:
           uses: 'azure/aci-deploy@v1'
           with:
             resource-group: ${{ secrets.RESOURCE_GROUP }}
-            dns-name-label: ${{ secrets.RESOURCE_GROUP }}${{ github.run_number }}
             image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/juiceshopstefanpe:${{ github.sha }}
             registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
             registry-username: ${{ secrets.REGISTRY_USERNAME }}
             registry-password: ${{ secrets.REGISTRY_PASSWORD }}
+            dns-name-label: juiceshop
+            ports: 3000
+            ip-address: Public
             name: aci-juiceshop
-            location: 'west us'
+            location: 'west europe'
