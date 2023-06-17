@@ -2,7 +2,7 @@ on: [push]
 name: CICD_to_ACR_and_ACI
 
 jobs:
-    build-and-deploy:
+    build:
         runs-on: ubuntu-latest
         steps:
         # checkout the repo
@@ -24,6 +24,12 @@ jobs:
             docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/juiceshopstefanpe:${{ github.sha }}
             docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/juiceshopstefanpe:${{ github.sha }}
 
+    deploy:
+        if: always()
+        needs:
+          - build
+        runs-on: ubuntu-latest
+        steps:
         - name: 'Deploy to Azure Container Instances'
           uses: 'azure/aci-deploy@v1'
           with:
@@ -35,5 +41,5 @@ jobs:
             dns-name-label: juiceshop
             ports: 3000
             ip-address: Public
-            name: aci-juiceshop
+            name: aci-stefanpelab-juiceshop
             location: 'west europe'
